@@ -1,5 +1,5 @@
 # Data Sources
-Data sources come from [the Caribbean Handbook on Risk Information Management](http://charim-geonode.net)
+Data is sourced from [the Caribbean Handbook on Risk Information Management](http://charim-geonode.net).
 
 ## Table of Contents
 TBD
