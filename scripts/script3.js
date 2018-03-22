@@ -33,3 +33,12 @@ var baseMaps = {
 
 L.control.layers(baseMaps).addTo(map);
 
+
+// info button
+var infoButton = L.control.infoButton({
+    position: 'topright',
+    linkTitle: 'About',
+    title: '<h2>About</h2>',
+    show: true,
+    html: ''
+}).addTo(map);
