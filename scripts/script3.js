@@ -16,7 +16,7 @@ var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png'
 
 
 // map component
-var map = L.map('mapid', {
+var map = L.map('map', {
 	center: [12.110659, -61.685116], // default centre
 	zoom: 11, // default zoom,
 	defaultExtentControl: true, // default extent button
@@ -31,16 +31,5 @@ var baseMaps = {
 	"OpenTopoMap": OpenTopoMap
 };
 
-L.control.layers(baseMaps).addTo(map); 
-
-
-// infobox
-var InfoBox = L.control({position: 'bottomleft'});
-
-InfoBox.onAdd = function(map){
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = '<p class="Info"><big>Grenada Hazard Risk Assessment</big><br>- Scroll to ZOOM<br>- blah blah blah</p>'
-    return div;
-};
-InfoBox.addTo(map);
+L.control.layers(baseMaps).addTo(map);
 
