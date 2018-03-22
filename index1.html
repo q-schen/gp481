@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Aegis - Grenada</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+	<!-- Leaflet Source -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<!-- Default Extent -->
+	<link rel="stylesheet" href="./Plugins/Leaflet.defaultextent-master/dist/leaflet.defaultextent.css"/>
+	<script src="./Plugins/Leaflet.defaultextent-master/dist/leaflet.defaultextent.js"></script>
+
+	<!--BOOTSTRAP -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</head>
+<body>
+	<div>
+    <img class="container-fluid" src="banner_grenada.jpg" width="100%" height="100px" alt="grenada" />
+  </div>
+
+
+
+<style>
+    	body { margin:100; padding:0; }
+    	#mapid { position:relative; top:0px; bottom:50px; width:800px; height:500px;}
+		
+		.Info {
+		  margin: 0;
+		  padding: 5px;
+		  border-style: solid;
+		  border-radius: 7px;
+		  border: 3px;
+		  solid #000000;
+		  background-color: #339933;
+		  font-weight: bold;
+		  color: white;
+		}
+		.main_title {
+			color:green;
+		}
+
+		html, body {
+    height: 100%;
+}
+
+body {
+    background-color:#ccffdf;
+}
+
+
+.bodyx{
+
+	padding-right:10%;
+    padding-left:10%;
+}
+
+.jumbotron {
+    background-color: #f4511e;
+    color: #fff;
+}
+
+.aboutContainer {
+    padding: 5px 20px;
+}
+
+.bg-grey {
+      background-color: #f6f6f6;
+  }
+
+
+
+
+</style>
+
+<div class="bodyx">
+<div class="container-fluid bg-grey aboutContainer ">
+<div class="main_title" >
+<h1 class="text-center"> Grenada </h1>
+</div>
+</div>
+
+<div class="container-fluid bg-grey aboutContainer ">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Introduction</h3>     
+      <p> The country of Grenada is prone to many natural hazards such as flooding, mass movements and hurricanes. Past attempts to lessen the impacts have been more reactive than proactive in nature. Through the use of infrastructure, precipitation, soil moisture, historic flood data, the landslide inventory, and other datasets, this project aims to identify areas at risk of these hazards. Implementation of this data through a web map application will not only act as a decision-making tool for the government and emergency services, but also for all the residents of Grenada, as it will be freely available. The web map application can be used to optimize hazard mitigation methods and promote economic prosperity. </p>
+      <br>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="bodyx">
+<div class="container-fluid bg-grey aboutContainer ">
+  <div class="row">
+    <div class="col-sm-8">
+      <h3>Background</h3>     
+      <p> Grenada’s location in the Caribbean Sea exposes the island nation to a wide variety of natural hazards. However, at-risk areas are not well documented and public knowledge of disaster risk is not wide-spread, specifically in regards to hurricanes, flooding, and mass movements </p>
+      <br>
+    </div>
+        <div class="col-sm-4">
+      <img src="grenadaMap.PNG" alt="About" style= "width:70%;height:70%;" >
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="bodyx">
+<div class="container-fluid bg-grey aboutContainer ">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Charts</h3>  
+      <br>   
+      <h4 class="text-center"> Chart1 </h4>
+	<img src="grenadaMap.PNG" alt="About" style= "width:20%;height:20%;display:block;margin-left:auto;margin-right:auto" >
+	<br>
+	<p class="text-center">stuff about the chart1 ............</p>
+	<br>
+	<br>
+	<h4 class="text-center"> Chart2 </h4>
+	<img src="grenadaMap.PNG" alt="About" style= "width:20%;height:20%;display:block;margin-left:auto;margin-right:auto;" >
+	<br>
+		<p class="text-center">stuff about the chart2 ............</p>
+      <br>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+<div class="mapping bodyx">
+<div class="container-fluid bg-grey aboutContainer ">
+<h3>Map</h3>
+<div id="mapid">
+
+<script src="bikeshare.geoJson" type="text/javascript"></script>
+<script type='text/javascript'>
+// basemap options
+var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+});
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 17,
+	attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+// map component
+var map = L.map('mapid', {
+	center: [12.110659, -61.685116], // default centre
+	zoom: 11, // default zoom,
+	defaultExtentControl: true, // default extent button
+	layers: [OpenStreetMap_Mapnik]
+});
+// basemap control
+var baseMaps = {
+	"OpenStreetMap": OpenStreetMap_Mapnik,
+	"OpenStreetMap HOT": OpenStreetMap_HOT,
+	"OpenTopoMap": OpenTopoMap
+};
+L.control.layers(baseMaps).addTo(map); 
+// infobox
+var InfoBox = L.control({position: 'bottomleft'});
+InfoBox.onAdd = function(map){
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML = '<p class="Info"><big>Grenada Hazard Risk Assessment</big><br>- Scroll to ZOOM<br>- blah blah blah</p>'
+    return div;
+};
+InfoBox.addTo(map);
+</script>
+</div>
+</div>
+</div>
+
+
+<div class="bodyx">
+<div class="container-fluid bg-grey aboutContainer ">
+  <div class="row">
+    <div class="col-sm-8">
+      <h3>Comments</h3>     
+      <p> Write Comments Here </p>
+      <br>
+    </div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
