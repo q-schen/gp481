@@ -6,11 +6,11 @@ This is the repository for the web map application of our Winter 2018 GIS capsto
 2. Data
 3. Leaflet settings and plugins
 
-## 1. Webpage Files
+## 1. Webpage Files and Layout
 
 
-## Data
+## 2. Data
 
 
-## Leaflet Settings and Plugins
+## 3. Leaflet Settings and Plugins
 
