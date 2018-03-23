@@ -44,15 +44,8 @@ var infoButton = L.control.infoButton({
 }).addTo(map);
 
 
-
-var ED;
-// adding geojson data to the map
-$.getJSON("./geojson/Monument_Locations.geojson",  
-	function(data) {
-		ED = data;
-	}
-);
+// adding geojson
+var enumDist = new L.geoJson(enumdist).addTo(mymap);
 
 
-var enumDist = new L.geoJson(ED).addTo(mymap);
 
