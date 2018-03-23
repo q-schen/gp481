@@ -55,7 +55,7 @@ var styleED = {
 // adding geojson
 var enumDist = new L.geoJson(enumdist, {
     style: styleED
-}).addTo(mymap);
+}).addTo(map);
 
 
 
