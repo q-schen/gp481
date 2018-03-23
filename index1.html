@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	<!-- Default Extent -->
-	<link rel="stylesheet" href="./Plugins/Leaflet.defaultextent-master/dist/leaflet.defaultextent.css"/>
-	<script src="./Plugins/Leaflet.defaultextent-master/dist/leaflet.defaultextent.js"></script>
+	<link rel="stylesheet" href="./Leaflet.defaultextent-master/dist/leaflet.defaultextent.css"/>
+	<script src="./Leaflet.defaultextent-master/dist/leaflet.defaultextent.js"></script>
 
 	<!--BOOTSTRAP -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -21,14 +21,18 @@
 </head>
 <body>
 	<div>
-    <img class="container-fluid" src="banner_grenada.jpg" width="100%" height="100px" alt="grenada" />
+    <img src="banner_grenada.jpg" width="100%" height="100%" alt="grenada" />
   </div>
 
 
 
 <style>
-    	body { margin:100; padding:0; }
-    	#mapid { position:relative; top:0px; bottom:50px; width:800px; height:500px;}
+body {
+    background-color:#c2c2a3;
+    height: 100%
+    width: 100%;
+}
+    	#mapid { position:relative; top:0px; bottom:50px; width:100%; height:500px;}
 		
 		.Info {
 		  margin: 0;
@@ -47,11 +51,10 @@
 
 		html, body {
     height: 100%;
+    width: 100%;
 }
 
-body {
-    background-color:#ccffdf;
-}
+
 
 
 .bodyx{
@@ -113,6 +116,17 @@ body {
 
 
 
+<div class="mapping bodyx">
+<div class="container-fluid bg-grey aboutContainer bodyx">
+<h3>Map</h3>
+<a href="index2.html">
+<img src="mapAccess.PNG" alt="Access Map" border="0">
+</a>
+
+</div>
+</div>
+
+
 <div class="bodyx">
 <div class="container-fluid bg-grey aboutContainer ">
   <div class="row">
@@ -136,68 +150,16 @@ body {
 
 
 
-
-
-
-<div class="mapping bodyx">
-<div class="container-fluid bg-grey aboutContainer ">
-<h3>Map</h3>
-<div id="mapid">
-
-<script src="bikeshare.geoJson" type="text/javascript"></script>
-<script type='text/javascript'>
-// basemap options
-var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	maxZoom: 19,
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-});
-var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-	maxZoom: 19,
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
-});
-var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-	maxZoom: 17,
-	attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-});
-// map component
-var map = L.map('mapid', {
-	center: [12.110659, -61.685116], // default centre
-	zoom: 11, // default zoom,
-	defaultExtentControl: true, // default extent button
-	layers: [OpenStreetMap_Mapnik]
-});
-// basemap control
-var baseMaps = {
-	"OpenStreetMap": OpenStreetMap_Mapnik,
-	"OpenStreetMap HOT": OpenStreetMap_HOT,
-	"OpenTopoMap": OpenTopoMap
-};
-L.control.layers(baseMaps).addTo(map); 
-// infobox
-var InfoBox = L.control({position: 'bottomleft'});
-InfoBox.onAdd = function(map){
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = '<p class="Info"><big>Grenada Hazard Risk Assessment</big><br>- Scroll to ZOOM<br>- blah blah blah</p>'
-    return div;
-};
-InfoBox.addTo(map);
-</script>
-</div>
-</div>
-</div>
-
-
-<div class="bodyx">
-<div class="container-fluid bg-grey aboutContainer ">
+<div class="container-fluid bg-grey aboutContainer bodyx">
   <div class="row">
     <div class="col-sm-8">
       <h3>Comments</h3>     
-      <p> Write Comments Here </p>
+      <p> No Additional Comments at this time</p>
       <br>
     </div>
   </div>
 </div>
-</div>
+
 
 </body>
 </html>
