@@ -31,7 +31,7 @@ var baseMaps = {
 	"OpenTopoMap": OpenTopoMap
 };
 
-L.control.layers(baseMaps).addTo(map);
+
 
 
 // info button
@@ -55,7 +55,30 @@ var styleED = {
 // adding geojson
 var enumDist = new L.geoJson(enumdist, {
     style: styleED
-}).addTo(map);
+});
+
+
+// social vulnerability style function
+function styleSV(feature) {
+    switch (feature.properties.Total_Risk) {
+        case > 0.5: return {color: "#ff0000"};
+        case <= 0.5: return {color: "#0000ff"};
+    }
+}
+
+var socialVul = new L.geoJson(socialvul, {
+    style: styleSV
+});
+
+
+var overlayMaps = {
+    "Enumeration Districts": enumDist,
+    "Social Vulnerability": socialVul
+};
+
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+
 
 
 
