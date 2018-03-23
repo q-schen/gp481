@@ -36,9 +36,21 @@ L.control.layers(baseMaps).addTo(map);
 
 // info button
 var infoButton = L.control.infoButton({
-    position: 'topright',
+    position: 'topleft',
     linkTitle: 'About',
     title: '<h2>About</h2>',
     show: true,
-    html: ''
+    html: 'GRENADAAAAAAA <p> Click outside this box to close it!'
 }).addTo(map);
+
+
+
+
+// adding geojson data to the map
+var enumDist = new L.geoJson(EnumDist, {
+	onEachFeature: onEachFeature
+}).addTo(mymap);
+
+
+
+
