@@ -44,8 +44,18 @@ var infoButton = L.control.infoButton({
 }).addTo(map);
 
 
+
+// ED style
+var styleED = {
+    "color": "#ff7800",
+    "weight": 5,
+    "opacity": 0.65
+};
+
 // adding geojson
-var enumDist = new L.geoJson(enumdist).addTo(mymap);
+var enumDist = new L.geoJson(enumdist, {
+    style: styleED
+}).addTo(mymap);
 
 
 
