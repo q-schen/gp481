@@ -60,10 +60,14 @@ var enumDist = new L.geoJson(enumdist, {
 
 // social vulnerability style function
 function styleSV(feature) {
-    switch (feature.properties.Total_Risk) {
-        case > 0.5: return {color: "#ff0000"};
-        case <= 0.5: return {color: "#0000ff"};
-    }
+    return d > 1.0  ? '#800026' :
+           d > 0.9  ? '#BD0026' :
+           d > 0.75 ? '#E31A1C' :
+           d > 0.5  ? '#FC4E2A' :
+           d > 0.25 ? '#FD8D3C' :
+           d > 0.1  ? '#FEB24C' :
+           d > 0    ? '#FED976' :
+                      '#FFEDA0';
 }
 
 var socialVul = new L.geoJson(socialvul, {
