@@ -59,18 +59,21 @@ var enumDist = new L.geoJson(enumdist, {
 
 
 
-
 // social vulnerability style functions
 function colourSV(tr) {
-    return tr > 1.0  ? '#800026' :
-           tr > 0.9  ? '#BD0026' :
-           tr > 0.75 ? '#E31A1C' :
-           tr > 0.5  ? '#FC4E2A' :
-           tr > 0.25 ? '#FD8D3C' :
-           tr > 0.1  ? '#FEB24C' :
-           tr > 0    ? '#FED976' :
-                       '#FFEDA0';
+    return tr <	0.0049326 ? '#ffffff' :
+            tr < 0.0062438 ? '#fff7ec' :
+            tr < 0.0077033 ? '#fee8c8' :
+            tr < 0.0086463 ? '#fdd49e' :
+            tr < 0.009941 ? '#fdbb84' :
+            tr < 0.0113029 ? '#fc8d59' :
+            tr < 0.0129887 ? '#ef6548' :
+            tr < 0.0149323 ? '#d7301f' :
+            tr < 0.0179384 ? '#b30000' :
+            tr < 0.0636626 ? '#7f0000' :
+                            '#FFEDA0';
 }
+
 
 function styleSV(feature) {
     return {
