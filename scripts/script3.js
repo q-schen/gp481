@@ -1,3 +1,5 @@
+/****************************************** Setting Up Map Component ******************************************/
+
 // basemap options
 var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 19,
@@ -15,15 +17,6 @@ var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png'
 });
 
 
-// map component
-var map = L.map('map', {
-	center: [12.110659, -61.685116], // default centre
-	zoom: 11, // default zoom,
-	defaultExtentControl: true, // default extent button
-	layers: [OpenStreetMap_Mapnik]
-});
-
-
 // basemap control
 var baseMaps = {
 	"OpenStreetMap": OpenStreetMap_Mapnik,
@@ -33,11 +26,25 @@ var baseMaps = {
 
 
 
+
+// map component
+var map = L.map('map', {
+	center: [12.110659, -61.685116], // default centre
+	zoom: 11, // default zoom,
+	defaultExtentControl: true, // default extent button
+	layers: [OpenStreetMap_Mapnik]
+});
+
+
+
+
+
 // Disclaimer text for the splash
 var disclaimer = "The country of Grenada is prone to many natural hazards such as flooding, mass movements and hurricanes. This project aims to identify areas at risk of these hazards due to social vulnerability and physical features of the landscape."
     + "This web map application shows the areas of risk for storm surge and landslides, as well as enumeration districts of different social vulnerability levels. These layers can be toggled on and off."
     + "<p>The web map application, under the Grenada hazard risk assessment project, is mainly to be used as a visualization tool. Generated under specific criteria, this online product should not be viewed as a substitution for government and emergency management protocol. This application is only to be used as a visualization tool or to raise public awareness. As infrastructure and other regional changes take place on the island, the risk areas and levels of risk are likely to change."
     + "<p>Click <a href ='https://q-schen.github.io/gp481/index1.html' target='_blank'>here</a> to read more about the project. Click outside this box to view the map.";
+
 
 // splash/info button
 var infoButton = L.control.infoButton({
@@ -50,6 +57,9 @@ var infoButton = L.control.infoButton({
 
 
 
+
+/****************************************** Data Layers and Styling ******************************************/
+
 // ED style
 var styleED = {
     "color": "#ff7800",
@@ -61,6 +71,9 @@ var styleED = {
 var enumDist = new L.geoJson(enumdist, {
     style: styleED
 });
+
+map.addLayer(enumDist); // This enables the layer so that it is shown on map load
+
 
 
 
@@ -96,6 +109,17 @@ var socialVul = new L.geoJson(socialvul, {
     style: styleSV
 });
 
+
+
+
+
+
+
+
+
+
+
+/****************************************** Adding all layers to map ******************************************/
 
 var overlayMaps = {
     "Enumeration Districts": enumDist,
