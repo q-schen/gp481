@@ -60,6 +60,7 @@ var infoButton = L.control.infoButton({
 
 /****************************************** Data Layers and Styling ******************************************/
 
+/*
 // ED style
 var styleED = {
     "color": "#ff7800",
@@ -71,8 +72,21 @@ var styleED = {
 var enumDist = new L.geoJson(enumdist, {
     style: styleED
 });
+*/
 
-map.addLayer(enumDist); // This enables the layer so that it is shown on map load
+var styleTR = {
+    "color": "#756bb1",
+    "weight": 1,
+    "opacity": 0.5
+};
+
+// adding geojson
+var totalRisk = new L.geoJson(totalrisk, {
+    style: styleTR
+});
+
+
+map.addLayer(totalRisk); // This enables the layer so that it is shown on map load
 
 
 
@@ -112,6 +126,17 @@ var socialVul = new L.geoJson(socialvul, {
 
 
 
+/*
+var styleLandslide = {
+    "color": "#ff7800",
+    "weight": 1,
+    "opacity": 0.5
+};
+
+var landslides = new L.geoJson(landslide, {
+    style: styleLandslide
+});
+*/
 
 
 
@@ -154,12 +179,19 @@ var stormsurge = L.layerGroup([ss_9m,ss_6m,ss_3m]);
 
 
 
+
+var hurricaneshelters = new L.geoJson(shelters).addTo(map);
+
+
+
+
 /****************************************** Adding all layers to map ******************************************/
 
 var overlayMaps = {
-    "Enumeration Districts": enumDist,
+    "Overall Hazard Risk": totalRisk,
     "Social Vulnerability": socialVul,
-    "All Storm Surge": stormsurge
+    //"Landslides": landslides,
+    "Storm Surge": stormsurge
 };
 
 
