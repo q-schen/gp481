@@ -115,6 +115,41 @@ var socialVul = new L.geoJson(socialvul, {
 
 
 
+var style3m = {
+    "color": "#6baed6",
+    "weight": 3,
+    "opacity": 0.65
+};
+
+var ss_3m = new L.geoJson(stormsurge_3m, {
+    style: style3m
+});
+
+
+
+var style6m = {
+    "color": "#3182bd",
+    "weight": 3,
+    "opacity": 0.65
+};
+
+var ss_6m = new L.geoJson(stormsurge_6m, {
+    style: style6m
+});
+
+
+
+var style9m = {
+    "color": "#08519c",
+    "weight": 3,
+    "opacity": 0.65
+};
+
+var ss_9m = new L.geoJson(stormsurge_9m, {
+    style: style9m
+});
+
+
 
 
 
@@ -123,7 +158,10 @@ var socialVul = new L.geoJson(socialvul, {
 
 var overlayMaps = {
     "Enumeration Districts": enumDist,
-    "Social Vulnerability": socialVul
+    "Social Vulnerability": socialVul,
+    "3m Storm Surge": ss_3m,
+    "6m Storm Surge": ss_6m,
+    "9m Storm Surge": ss_9m
 };
 
 
