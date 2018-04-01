@@ -134,7 +134,7 @@ map.addLayer(hazardRisk); // This enables the layer so that it is shown on map l
 
 
 
-
+// Social Vulnerability Layer
 // popup function for SV
 function popupSV(feature, layer) {
     
@@ -183,7 +183,7 @@ var socialVul = new L.geoJson(socialvul, {
 
 
 
-
+// Landslide Layer
 /*
 var styleLandslide = {
     "color": "#ff7800",
@@ -198,10 +198,11 @@ var landslides = new L.geoJson(landslide, {
 
 
 
+// Storm Surge Layer
 // storm surge colours
 var ssColours = ['#4292c6','#2171b5','#08519c','#08306b'];
 
-// style variable
+// 3m style variable
 var style3m = {
     "color": ssColours[1],
     "weight": 1.5,
@@ -214,7 +215,7 @@ var ss_3m = new L.geoJson(stormsurge_3m, {
 }).bindPopup("This is 3m storm surge.");
 
 
-// style variable
+// 6m style variable
 var style6m = {
     "color": ssColours[2],
     "weight": 1.5,
@@ -227,7 +228,7 @@ var ss_6m = new L.geoJson(stormsurge_6m, {
 }).bindPopup("This is 6m storm surge.");
 
 
-// style variable
+// 9m style variable
 var style9m = {
     "color": ssColours[3],
     "weight": 1.5,
@@ -245,7 +246,7 @@ var stormsurge = L.layerGroup([ss_9m, ss_6m, ss_3m]);
 
 
 
-
+// Miscellaneous Layers
 
 // shelters layer added to map, not in the control
 //var hurricaneshelters = new L.geoJson(shelters).addTo(map);
@@ -270,7 +271,7 @@ var overlayMaps = {
 L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 
-// events on enabled an overlay layer
+// events on enabling an overlay layer
 map.on('overlayadd', function(olayer) {
     if (olayer.name == 'Storm Surge') {
         // bring the stormsurge group to the front
