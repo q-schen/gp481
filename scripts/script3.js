@@ -60,8 +60,22 @@ var infoButton = L.control.infoButton({
 
 /****************************************** Data Layers and Styling ******************************************/
 
+// popup function for HR
+function popupHR(feature, layer) {
+    
+    var ed = feature.properties.Enum_Dist,
+        parish = feature.properties.Perish,
+        level = feature.properties.gridcode;
+    
+    var parishName = "<big>" + parish + " Parish</big><br>",
+        edNum = "<b>Enumeration District: </b>" + ed + "<br>",
+        hrLevel = "<b>Hazard Risk Level: </b>" + level;
+    
+    layer.bindPopup(parishName + edNum + hrLevel);
+}
+
 // classify gridcode into 9 classes (int from 1-9)
-function colourTR(gc) {
+function colourHR(gc) {
     return gc == 1 ? '#fff7f3' :
             gc == 2 ? '#fde0dd' :
             gc == 3 ? '#fcc5c0' :
@@ -75,9 +89,9 @@ function colourTR(gc) {
 }
 
 // style function
-function styleTR(feature) {
+function styleHR(feature) {
     return {
-        fillColor: colourTR(feature.properties.gridcode),
+        fillColor: colourHR(feature.properties.gridcode),
         fillOpacity: 0.55,
         weight: 0.5,
         opacity: 0.75,
@@ -87,14 +101,29 @@ function styleTR(feature) {
 }
 
 // total risk geojson
-var totalRisk = new L.geoJson(totalrisk, {
-    style: styleTR
+var hazardRisk = new L.geoJson(totalrisk, {
+    style: styleHR,
+    onEachFeature: popupHR
 });
 
-map.addLayer(totalRisk); // This enables the layer so that it is shown on map load
+map.addLayer(hazardRisk); // This enables the layer so that it is shown on map load
 
 
 
+
+// popup function for SV
+function popupSV(feature, layer) {
+    
+    var ed = feature.properties.Enum_Dist,
+        parish = feature.properties.Perish,
+        level = feature.properties.Total_Risk;
+    
+    var parishName = "<big>" + parish + " Parish</big><br>",
+        edNum = "<b>Enumeration District: </b>" + ed + "<br>",
+        trLevel = "<b>Social Vulnerability Level: </b>" + level;
+    
+    layer.bindPopup(parishName + edNum + trLevel);
+}
 
 // classify total_risk by equal intervals
 function colourSV(tr) {
@@ -124,7 +153,8 @@ function styleSV(feature) {
 
 // social vulnerability geojson
 var socialVul = new L.geoJson(socialvul, {
-    style: styleSV
+    style: styleSV,
+    onEachFeature: popupSV
 });
 
 
@@ -206,7 +236,7 @@ var stormsurge = L.layerGroup([ss_9m, ss_6m, ss_3m]);
 
 // layers that can be toggled in the control
 var overlayMaps = {
-    "Overall Hazard Risk": totalRisk,
+    "Overall Hazard Risk": hazardRisk,
     "Social Vulnerability": socialVul,
     //"Landslides": landslides,
     "Storm Surge": stormsurge
@@ -219,7 +249,10 @@ L.control.layers(baseMaps, overlayMaps).addTo(map);
 // events on enabled an overlay layer
 map.on('overlayadd', function(olayer) {
     if (olayer.name == 'Storm Surge') {
-        ss_9m.bringToBack();
+        // bring the stormsurge group to the front
+        //   with 3m on top of 6m on top of 9m
+        ss_9m.bringToFront();
+        ss_6m.bringToFront();
         ss_3m.bringToFront();
     }
 });
