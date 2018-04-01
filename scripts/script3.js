@@ -60,65 +60,69 @@ var infoButton = L.control.infoButton({
 
 /****************************************** Data Layers and Styling ******************************************/
 
-/*
-// ED style
-var styleED = {
-    "color": "#ff7800",
-    "weight": 1,
-    "opacity": 0.5
-};
+// classify gridcode into 9 classes (int from 1-9)
+function colourTR(gc) {
+    return gc == 1 ? '#fff7f3' :
+            gc == 2 ? '#fde0dd' :
+            gc == 3 ? '#fcc5c0' :
+            gc == 4 ? '#fa9fb5' :
+            gc == 5 ? '#f768a1' :
+            gc == 6 ? '#dd3497' :
+            gc == 7 ? '#ae017e' :
+            gc == 8 ? '#7a0177' :
+            gc == 9 ? '#49006a' :
+                        '#000000';
+}
 
-// adding geojson
-var enumDist = new L.geoJson(enumdist, {
-    style: styleED
-});
-*/
+// style function
+function styleTR(feature) {
+    return {
+        fillColor: colourTR(feature.properties.gridcode),
+        fillOpacity: 0.55,
+        weight: 0.5,
+        opacity: 0.75,
+        color: 'black',
+        dashArray: '0'
+    };
+}
 
-var styleTR = {
-    "color": "#756bb1",
-    "weight": 1,
-    "opacity": 0.5
-};
-
-// adding geojson
+// total risk geojson
 var totalRisk = new L.geoJson(totalrisk, {
     style: styleTR
 });
-
 
 map.addLayer(totalRisk); // This enables the layer so that it is shown on map load
 
 
 
 
-// social vulnerability style functions
+// classify total_risk by equal intervals
 function colourSV(tr) {
-    return tr <	0.0049326 ? '#ffffff' :
-            tr < 0.0062438 ? '#fff7ec' :
-            tr < 0.0077033 ? '#fee8c8' :
-            tr < 0.0086463 ? '#fdd49e' :
-            tr < 0.009941 ? '#fdbb84' :
-            tr < 0.0113029 ? '#fc8d59' :
-            tr < 0.0129887 ? '#ef6548' :
-            tr < 0.0149323 ? '#d7301f' :
-            tr < 0.0179384 ? '#b30000' :
-            tr < 0.0636626 ? '#7f0000' :
-                            '#FFEDA0';
+    return tr <	0.009051 ? '#ffffe5' :
+            tr < 0.015878 ? '#f7fcb9' :
+            tr < 0.022704 ? '#d9f0a3' :
+            tr < 0.029530 ? '#addd8e' :
+            tr < 0.036357 ? '#78c679' :
+            tr < 0.043183 ? '#41ab5d' :
+            tr < 0.050010 ? '#238443' :
+            tr < 0.056836 ? '#006837' :
+            tr < 0.063663 ? '#004529' :
+                            '#000000';
 }
 
-
+// style function
 function styleSV(feature) {
     return {
         fillColor: colourSV(feature.properties.Total_Risk),
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.7
+        fillOpacity: 0.55,
+        weight: 0.5,
+        opacity: 0.75,
+        color: 'black',
+        dashArray: '0'
     };
 }
 
-
+// social vulnerability geojson
 var socialVul = new L.geoJson(socialvul, {
     style: styleSV
 });
@@ -140,53 +144,66 @@ var landslides = new L.geoJson(landslide, {
 
 
 
+// style variable
 var style3m = {
     "color": "#6baed6",
     "weight": 1.5,
-    "opacity": 0.65
+    "opacity": 0.5
 };
 
+// 3m geojson
 var ss_3m = new L.geoJson(stormsurge_3m, {
     style: style3m
 });
 
 
-
+// style variable
 var style6m = {
     "color": "#3182bd",
     "weight": 1.5,
-    "opacity": 0.65
+    "opacity": 0.5
 };
 
+// 6m geojson
 var ss_6m = new L.geoJson(stormsurge_6m, {
     style: style6m
 });
 
 
-
+// style variable
 var style9m = {
     "color": "#08519c",
     "weight": 1.5,
-    "opacity": 0.65
+    "opacity": 0.5
 };
 
+// 9m geojson
 var ss_9m = new L.geoJson(stormsurge_9m, {
     style: style9m
 });
 
-
+// create stormsurge group layer
+//    so that in the control, the 3 layers are toggled together
 var stormsurge = L.layerGroup([ss_9m,ss_6m,ss_3m]);
 
 
 
 
-var hurricaneshelters = new L.geoJson(shelters).addTo(map);
+
+
+// shelters layer added to map, not in the control
+//var hurricaneshelters = new L.geoJson(shelters).addTo(map);
+
+
+
+
 
 
 
 
 /****************************************** Adding all layers to map ******************************************/
 
+// layers that can be toggled in the control
 var overlayMaps = {
     "Overall Hazard Risk": totalRisk,
     "Social Vulnerability": socialVul,
@@ -194,7 +211,7 @@ var overlayMaps = {
     "Storm Surge": stormsurge
 };
 
-
+// add all layers of the control to the map
 L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 
