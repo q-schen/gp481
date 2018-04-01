@@ -87,12 +87,12 @@ L.Control.Search = L.Control.extend({
 		position: 'topleft',		
 		marker: {						//custom L.Marker or false for hide
 			icon: false,				//custom L.Icon for maker location or false for hide
-			animate: true,				//animate a circle over location found
+			animate: false,				//animate a circle over location found
 			circle: {					//draw a circle in location found
 				radius: 10,
 				weight: 3,
 				color: '#e03',
-				stroke: true,
+				stroke: false,
 				fill: false
 			}
 		}

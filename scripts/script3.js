@@ -58,8 +58,32 @@ var infoButton = L.control.infoButton({
 
 
 
+
+
 /****************************************** Data Layers and Styling ******************************************/
 
+// Parish Layer (for search function)
+// deafult style
+var styleParish = {
+    fillColor: "black",
+    fillOpacity: 0,
+    weight: 0,
+    opacity: 0,
+    color: 'black',
+    dashArray: '0'
+}
+
+// parishes geojson
+var parish = new L.geoJson(parishes, {
+    style: styleParish
+});
+
+map.addLayer(parish); // This enables the layer so that it is shown on map load
+
+
+
+
+// Overall Hazard Risk Layer
 // popup function for HR
 function popupHR(feature, layer) {
     
@@ -256,5 +280,43 @@ map.on('overlayadd', function(olayer) {
         ss_3m.bringToFront();
     }
 });
+
+
+
+
+/****************************************** Search Control ******************************************/
+
+// create search control
+var searchControl = new L.Control.Search({
+	layer: parish, 
+	propertyName: 'Perish', 
+	initial: false,
+	hideMarkerOnCollapse: true,
+	textPlaceholder: 'Search Parish...'
+});
+
+// action when search is successful: open popup
+searchControl.on('search:locationfound', function(event) {
+    // zoom to parish
+    map.fitBounds(event.layer.getBounds());
+    
+    // set new parish style
+    event.layer.setStyle({
+        fillColor: 'white',
+        fillOpacity: 0,
+        weight: 3,
+        opacity: 0.85,
+        color: 'black',
+        dashArray: '2'
+    });
+});
+
+// action when search control is collapsed: revert to default style
+searchControl.on('search:collapsed', function(event) {
+    parish.setStyle(styleParish);
+});
+
+// add search control to map
+map.addControl(searchControl);
 
 
