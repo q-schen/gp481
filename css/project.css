@@ -1,0 +1,46 @@
+
+.closing {
+	font-size: 0.7em;
+	border-top: 1px solid grey;
+	margin-top: 1em;
+}
+
+
+
+.post {
+	padding: 1em 20%;
+	text-align: left;
+	line-height: 150%;
+}
+
+.entry h2, .post h2 {
+	margin: 0;
+	font-size: 2.8em;
+	line-height: 1.2;
+}
+
+h1 {
+	margin: 0;
+	text-shadow: #AAAAAA 0 0 0.08em;
+	font-weight: 100;
+	font-size: 4em;
+	color: green;
+	font-variant: small-caps;
+}
+
+h1 a { color: inherit; }
+
+
+.post strong { font-weight: 800; }
+.post em { font-style: italic; }
+
+.post img {
+	border: 1px solid #CCCCCC;
+	max-width: 80%;
+	height: auto;
+	width: auto;
+	max-height: 30em;
+	display: block;
+	text-align: center;
+	margin: 1em auto;
+}
