@@ -144,9 +144,12 @@ var landslides = new L.geoJson(landslide, {
 
 
 
+// storm surge colours
+var ssColours = ['#4292c6','#2171b5','#08519c','#08306b'];
+
 // style variable
 var style3m = {
-    "color": "#6baed6",
+    "color": ssColours[1],
     "weight": 1.5,
     "opacity": 0.5
 };
@@ -154,12 +157,12 @@ var style3m = {
 // 3m geojson
 var ss_3m = new L.geoJson(stormsurge_3m, {
     style: style3m
-});
+}).bindPopup("This is 3m storm surge.");
 
 
 // style variable
 var style6m = {
-    "color": "#3182bd",
+    "color": ssColours[2],
     "weight": 1.5,
     "opacity": 0.5
 };
@@ -167,12 +170,12 @@ var style6m = {
 // 6m geojson
 var ss_6m = new L.geoJson(stormsurge_6m, {
     style: style6m
-});
+}).bindPopup("This is 6m storm surge.");
 
 
 // style variable
 var style9m = {
-    "color": "#08519c",
+    "color": ssColours[3],
     "weight": 1.5,
     "opacity": 0.5
 };
@@ -180,12 +183,11 @@ var style9m = {
 // 9m geojson
 var ss_9m = new L.geoJson(stormsurge_9m, {
     style: style9m
-});
+}).bindPopup("This is 9m storm surge.");
 
 // create stormsurge group layer
 //    so that in the control, the 3 layers are toggled together
-var stormsurge = L.layerGroup([ss_9m,ss_6m,ss_3m]);
-
+var stormsurge = L.layerGroup([ss_9m, ss_6m, ss_3m]);
 
 
 
@@ -193,7 +195,6 @@ var stormsurge = L.layerGroup([ss_9m,ss_6m,ss_3m]);
 
 // shelters layer added to map, not in the control
 //var hurricaneshelters = new L.geoJson(shelters).addTo(map);
-
 
 
 
@@ -215,5 +216,12 @@ var overlayMaps = {
 L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 
+// events on enabled an overlay layer
+map.on('overlayadd', function(olayer) {
+    if (olayer.name == 'Storm Surge') {
+        ss_9m.bringToBack();
+        ss_3m.bringToFront();
+    }
+});
 
 
