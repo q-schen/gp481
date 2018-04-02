@@ -140,7 +140,7 @@ function popupSV(feature, layer) {
     
     var ed = feature.properties.Enum_Dist,
         parish = feature.properties.Perish,
-        level = feature.properties.Total_Risk;
+        level = feature.properties.Rank2;
     
     var parishName = "<big>" + parish + " Parish</big><br>",
         edNum = "<b>Enumeration District: </b>" + ed + "<br>",
@@ -151,22 +151,22 @@ function popupSV(feature, layer) {
 
 // classify total_risk by equal intervals
 function colourSV(tr) {
-    return tr <	0.009051 ? '#ffffe5' :
-            tr < 0.015878 ? '#f7fcb9' :
-            tr < 0.022704 ? '#d9f0a3' :
-            tr < 0.029530 ? '#addd8e' :
-            tr < 0.036357 ? '#78c679' :
-            tr < 0.043183 ? '#41ab5d' :
-            tr < 0.050010 ? '#238443' :
-            tr < 0.056836 ? '#006837' :
-            tr < 0.063663 ? '#004529' :
+    return tr <	(0.009051 * 100) ? '#ffffe5' :
+            tr < (0.015878 * 100) ? '#f7fcb9' :
+            tr < (0.022704 * 100) ? '#d9f0a3' :
+            tr < (0.029530 * 100) ? '#addd8e' :
+            tr < (0.036357 * 100) ? '#78c679' :
+            tr < (0.043183 * 100) ? '#41ab5d' :
+            tr < (0.050010 * 100) ? '#238443' :
+            tr < (0.056836 * 100) ? '#006837' :
+            tr < (0.063663 * 100) ? '#004529' :
                             '#000000';
 }
 
 // style function
 function styleSV(feature) {
     return {
-        fillColor: colourSV(feature.properties.Total_Risk),
+        fillColor: colourSV(feature.properties.Rank2),
         fillOpacity: 0.55,
         weight: 0.5,
         opacity: 0.75,
