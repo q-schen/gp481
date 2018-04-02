@@ -38,7 +38,6 @@ var map = L.map('map', {
 
 
 
-
 // Disclaimer text for the splash
 var disclaimer = "The country of Grenada is prone to many natural hazards such as flooding, mass movements and hurricanes. This project aims to identify areas at risk of these hazards due to social vulnerability and physical features of the landscape."
     + "This web map application shows the areas of risk for storm surge and landslides, as well as enumeration districts of different social vulnerability levels. These layers can be toggled on and off."
@@ -54,8 +53,6 @@ var infoButton = L.control.infoButton({
     show: true,
     html: disclaimer
 }).addTo(map);
-
-
 
 
 
@@ -254,9 +251,6 @@ var stormsurge = L.layerGroup([ss_9m, ss_6m, ss_3m]);
 
 
 
-
-
-
 /****************************************** Adding all layers to map ******************************************/
 
 // layers that can be toggled in the control
@@ -271,17 +265,115 @@ var overlayMaps = {
 L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 
-// events on enabling an overlay layer
+
+/****************************************** Legends ******************************************/
+
+// Initializing the legends
+var hrlegend = L.control({position: 'bottomright'});
+var svlegend = L.control({position: 'bottomright'});
+var sslegend = L.control({position: 'bottomright'});
+var lslegend = L.control({position: 'bottomright'});
+
+
+// Hazard Risk Legend
+hrlegend.onAdd = function(map) {
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = ["Level 1", "Level 3", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level 8", "Level 9"],
+        colours = ['#fff7f3','#fde0dd','#fcc5c0','#fa9fb5','#f768a1','#dd3497','#ae017e','#7a0177','#49006a'],
+        labels = [];
+
+    div.innerHTML += "<b>Hazard Risk</b><br>";
+
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + colours[i] + '"></i> ' + grades[i] + '<br>';
+    }
+
+    return div;
+};
+
+// Add Hazard Risk Legend to map
+hrlegend.addTo(map);
+
+
+
+
+// Social Vulnerability Legend
+svlegend.onAdd = function(map) {
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = ["< 0.9051", "< 1.5878", "< 2.2704", "< 2.9530", "< 3.6357", "< 4.3183", "< 5.0010", "< 5.6836", "< 6.3663"],
+        colours = ['#ffffe5','#f7fcb9','#d9f0a3','#addd8e','#78c679','#41ab5d','#238443','#006837','#004529'],
+        labels = [];        
+    
+    div.innerHTML += "<b>Social Vulnerability</b><br>";
+
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + colours[i] + '"></i> ' + grades[i] + '<br>';
+    }
+
+    return div;
+};
+
+
+
+
+// Storm Surge Legend
+sslegend.onAdd = function(map) {
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = ["3m Storm Surge", "6m Storm Surge", "9m Storm Surge"],
+        colours = ['#2171b5','#08519c','#08306b'],
+        labels = [];
+
+    div.innerHTML += "<b>Storm Surge</b><br>";
+
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + colours[i] + '"></i> ' + grades[i] + '<br>';
+    }
+
+    return div;
+};
+
+
+
+
+// Toggling on the legends
 map.on('overlayadd', function(olayer) {
-    if (olayer.name == 'Storm Surge') {
+    if (olayer.name == 'Overall Hazard Risk') {
+        // Hazard Risk Legend
+        hrlegend.addTo(map);
+    }
+    
+    else if (olayer.name == 'Social Vulnerability') {
+        svlegend.addTo(map);
+    }
+    
+    else if (olayer.name == 'Storm Surge') {
         // bring the stormsurge group to the front
         //   with 3m on top of 6m on top of 9m
         ss_9m.bringToFront();
         ss_6m.bringToFront();
         ss_3m.bringToFront();
+        
+        // Storm Surge Legend
+        sslegend.addTo(map);
     }
 });
 
+
+// Toggling off the legends
+map.on('overlayremove', function(olayer) {
+    if (olayer.name == 'Overall Hazard Risk') {
+        map.removeControl(hrlegend);
+    }
+    else if (olayer.name == 'Social Vulnerability') {
+        map.removeControl(svlegend);
+    }
+    else if (olayer.name == 'Storm Surge') {
+        map.removeControl(sslegend);
+    }
+})
 
 
 
