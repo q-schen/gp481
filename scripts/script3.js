@@ -41,7 +41,7 @@ var map = L.map('map', {
 // Disclaimer text for the splash
 var disclaimer = "The country of Grenada is prone to many natural hazards such as flooding, mass movements and hurricanes. This project aims to identify areas at risk of these hazards due to social vulnerability and physical features of the landscape."
     + "This web map application shows the areas of risk for storm surge and landslides, as well as enumeration districts of different social vulnerability levels. These layers can be toggled on and off."
-    + "<p>The web map application, under the Grenada hazard risk assessment project, is mainly to be used as a visualization tool. Generated under specific criteria, this online product should not be viewed as a substitution for government and emergency management protocol. This application is only to be used as a visualization tool or to raise public awareness. As infrastructure and other regional changes take place on the island, the risk areas and levels of risk are likely to change."
+    + "<p><b>DISCLAIMER</b>: The web map application, under the Grenada hazard risk assessment project, is mainly to be used as a visualization tool. Generated under specific criteria, this online product should not be viewed as a substitution for government and emergency management protocol. This application is only to be used as a visualization tool or to raise public awareness. As infrastructure and other regional changes take place on the island, the risk areas and levels of risk are likely to change."
     + "<p>Click <a href ='https://q-schen.github.io/gp481/final.html' target='_blank'>here</a> to read more about the project. Click outside this box to view the map.";
 
 
@@ -256,14 +256,6 @@ var stormsurge = L.layerGroup([ss_9m, ss_6m, ss_3m]);
 
 
 
-// Miscellaneous Layers
-
-// shelters layer added to map, not in the control
-//var hurricaneshelters = new L.geoJson(shelters).addTo(map);
-
-
-
-
 /****************************************** Adding all layers to map ******************************************/
 
 // layers that can be toggled in the control
@@ -293,11 +285,11 @@ var lslegend = L.control({position: 'bottomright'});
 // Hazard Risk Legend
 hrlegend.onAdd = function(map) {
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = ["Level 1", "Level 3", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level 8", "Level 9"],
+        grades = ["Lowest", "", "", "", "Medium", "", "", "", "Highest"],
         colours = ['#fff7f3','#fde0dd','#fcc5c0','#fa9fb5','#f768a1','#dd3497','#ae017e','#7a0177','#49006a'],
         labels = [];
 
-    div.innerHTML += "<b>Hazard Risk</b><br>";
+    div.innerHTML += "<b>Hazard Risk Level</b><br>";
 
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
@@ -316,11 +308,11 @@ hrlegend.addTo(map);
 // Social Vulnerability Legend
 svlegend.onAdd = function(map) {
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = ["< 0.9051", "< 1.5878", "< 2.2704", "< 2.9530", "< 3.6357", "< 4.3183", "< 5.0010", "< 5.6836", "< 6.3663"],
+        grades = ["Lowest", "", "", "", "Medium", "", "", "", "Highest"],
         colours = ['#ffffe5','#f7fcb9','#d9f0a3','#addd8e','#78c679','#41ab5d','#238443','#006837','#004529'],
         labels = [];        
     
-    div.innerHTML += "<b>Social Vulnerability</b><br>";
+    div.innerHTML += "<b>Social Vulnerability Level</b><br>";
 
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
