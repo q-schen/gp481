@@ -181,18 +181,22 @@ var socialVul = new L.geoJson(socialvul, {
 
 
 // Landslide Layer
-var lopacity = 0.55;
+var lopacity = 0.55,
+    northadjust = -0.0005,
+    southadjust = 0.00075,
+    westadjust = 0.00025,
+    eastadjust = 0.008;
 
 var l1Url = 'https://q-schen.github.io/gp481/Data/Rasters/landslide1.png',
-    l1Bounds = [[11.984179, -61.802838 + 0.005], [12.235563,-61.592473 + 0.005]],
+    l1Bounds = [[11.984179 + southadjust, -61.802838 + westadjust], [12.235563 + northadjust,-61.592473 + eastadjust]],
     l1 = L.imageOverlay(l1Url, l1Bounds, {opacity: lopacity});
 
 var l2Url = 'https://q-schen.github.io/gp481/Data/Rasters/landslide2.png',
-    l2Bounds = [[11.984179, -61.802838 + 0.005], [12.235563,-61.592473 + 0.005]],
+    l2Bounds = [[11.984179 + southadjust, -61.802838 + westadjust], [12.235563 + northadjust,-61.592473 + eastadjust]],
     l2 = L.imageOverlay(l2Url, l2Bounds, {opacity: lopacity});
 
 var l3Url = 'https://q-schen.github.io/gp481/Data/Rasters/landslide3.png',
-    l3Bounds = [[11.984179, -61.802838 + 0.005], [12.235563,-61.592473 + 0.005]],
+    l3Bounds = [[11.984179 + southadjust, -61.802838 + westadjust], [12.235563 + northadjust,-61.592473 + eastadjust]],
     l3 = L.imageOverlay(l3Url, l3Bounds, {opacity: lopacity});
 
 var landslides = L.layerGroup([l1, l2, l3]);
@@ -273,6 +277,8 @@ var overlayMaps = {
 // add all layers of the control to the map
 L.control.layers(baseMaps, overlayMaps).addTo(map);
 
+// Data attribution to CHARIM
+map.attributionControl.addAttribution("CHARIM");
 
 
 /****************************************** Legends ******************************************/
