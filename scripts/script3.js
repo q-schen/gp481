@@ -181,17 +181,26 @@ var socialVul = new L.geoJson(socialvul, {
 
 
 // Landslide Layer
-/*
-var styleLandslide = {
-    "color": "#ff7800",
-    "weight": 1,
-    "opacity": 0.5
-};
+var lopacity = 0.55;
 
-var landslides = new L.geoJson(landslide, {
-    style: styleLandslide
-});
-*/
+var l1Url = 'https://q-schen.github.io/gp481/Data/Rasters/landslide1.png',
+    l1Bounds = [[11.984179, -61.802838 + 0.005], [12.235563,-61.592473 + 0.005]],
+    l1 = L.imageOverlay(l1Url, l1Bounds, {opacity: lopacity});
+
+var l2Url = 'https://q-schen.github.io/gp481/Data/Rasters/landslide2.png',
+    l2Bounds = [[11.984179, -61.802838 + 0.005], [12.235563,-61.592473 + 0.005]],
+    l2 = L.imageOverlay(l2Url, l2Bounds, {opacity: lopacity});
+
+var l3Url = 'https://q-schen.github.io/gp481/Data/Rasters/landslide3.png',
+    l3Bounds = [[11.984179, -61.802838 + 0.005], [12.235563,-61.592473 + 0.005]],
+    l3 = L.imageOverlay(l3Url, l3Bounds, {opacity: lopacity});
+
+var landslides = L.layerGroup([l1, l2, l3]);
+
+
+// SW [11.984179, -61.802838]
+// NE [12.235563,-61.592473]
+//  + 0.005
 
 
 
@@ -257,7 +266,7 @@ var stormsurge = L.layerGroup([ss_9m, ss_6m, ss_3m]);
 var overlayMaps = {
     "Overall Hazard Risk": hazardRisk,
     "Social Vulnerability": socialVul,
-    //"Landslides": landslides,
+    "Landslides Susceptibility": landslides,
     "Storm Surge": stormsurge
 };
 
@@ -338,6 +347,26 @@ sslegend.onAdd = function(map) {
 
 
 
+// Storm Surge Legend
+lslegend.onAdd = function(map) {
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = ["Low Susceptibility", "Medium Susceptibility", "High Susceptibility"],
+        colours = ['#fdae61','#f46d43','#d73027'],
+        labels = [];
+
+    div.innerHTML += "<b>Landslide Susceptibility</b><br>";
+
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + colours[i] + '"></i> ' + grades[i] + '<br>';
+    }
+
+    return div;
+};
+
+
+
+
 // Toggling on the legends
 map.on('overlayadd', function(olayer) {
     if (olayer.name == 'Overall Hazard Risk') {
@@ -347,6 +376,10 @@ map.on('overlayadd', function(olayer) {
     
     else if (olayer.name == 'Social Vulnerability') {
         svlegend.addTo(map);
+    }
+    
+    else if (olayer.name == 'Landslides Susceptibility') {
+        lslegend.addTo(map);
     }
     
     else if (olayer.name == 'Storm Surge') {
@@ -369,6 +402,9 @@ map.on('overlayremove', function(olayer) {
     }
     else if (olayer.name == 'Social Vulnerability') {
         map.removeControl(svlegend);
+    }
+    else if (olayer.name == 'Landslides Susceptibility') {
+        map.removeControl(lslegend);
     }
     else if (olayer.name == 'Storm Surge') {
         map.removeControl(sslegend);
