@@ -116,9 +116,7 @@ ol, ul {
 }
 
 .site_links a:hover, .site_links a:focus {
-	border-top-color: #990000;
-	background-color:green;
-	color:red;
+	background-color: #cdd6cd;
 }
 
 .site_links .page { border-color: #009900; border-top-color: rgba(0, 153, 0); }
