@@ -39,8 +39,8 @@ var map = L.map('map', {
 
 
 // Disclaimer text for the splash
-var disclaimer = "The country of Grenada is prone to many natural hazards such as flooding, mass movements and hurricanes. This project aims to identify areas at risk of these hazards due to social vulnerability and physical features of the landscape."
-    + "This web map application shows the areas of risk for storm surge and landslides, as well as enumeration districts of different social vulnerability levels. These layers can be toggled on and off, although, for performance reasons, it is recommended that layers are shown one at a time."
+var disclaimer = "The country of Grenada is prone to many natural hazards such as flooding, mass movements and hurricanes. This project aims to identify at-risk areas due to social vulnerability and physical features of the landscape. "
+    + "This web map application shows the areas of risk for storm surge and landslides, as well as enumeration districts of different social vulnerability levels. These layers can be toggled on and off, although, for performance reasons, it is recommended that layers are shown one at a time. "
     + "<p><b>DISCLAIMER</b>: The web map application, under the Grenada hazard risk assessment project, is mainly to be used as a visualization tool. Generated under specific criteria, this online product should not be viewed as a substitution for government and emergency management protocol. This application is only to be used as a visualization tool to raise public awareness about local hazard risks. As infrastructure and other regional changes take place on the island, the risk areas and levels of risk are likely to change."
     + "<p>Click <a href ='https://q-schen.github.io/gp481/final.html' target='_blank'>here</a> to read more about the project. Click outside this box to view the map.";
 
