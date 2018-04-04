@@ -1,0 +1,89 @@
+.permalink {
+	text-decoration: none;
+	color: #056019;
+	padding-top: 0.2em;
+	font-weight: lighter;
+}
+
+.closing {
+	font-size: 0.7em;
+	border-top: 1px solid grey;
+	margin-top: 1em;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	vertical-align: top;
+}
+
+
+.subtext {
+	font-weight:100;
+	font-size:0.8em;
+	margin: 0;
+	vertical-align: top;
+	text-align:left;
+}
+
+#my-div {
+    background-color: #f00;
+    width: 200px;
+    height: 200px;
+}
+
+a.fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
+.entry {
+	padding: 0.5em 1em;
+	text-align: left;
+	border-left: 0.5em solid rgba(0, 0, 0, 0);
+	transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in;
+	background-color:#f9fffa;
+}
+
+
+h1 {
+	margin: 0;
+	text-shadow: #AAAAAA 0 0 0.08em;
+	font-weight: 100;
+	font-size: 4em;
+	color: green;
+	font-variant: small-caps;
+}
+
+h1 a { color: inherit; }
+
+.entry h2, .post h2 {
+	color: black;
+	margin: 0;
+	font-size: 1.5em;
+	line-height: 1.2;
+}
+
+.post h3 {
+	margin: 0;
+	margin-top: 1em;
+	font-size: 1.8em;
+	line-height: 1.2;
+}
+
+.post h4 {
+	margin: 0;
+	margin-top: 0.5em;
+	font-size: 1.4em;
+	line-height: 1.2;
+}
+
+.post strong { font-weight: 800; }
+.post em { font-style: italic; }
+
+img{
+	width:15%;
+	height:15%;
+}
